@@ -47,13 +47,13 @@ function makeCall(data,csrftoken){
   		url: "http://localhost:8000/register/save/",
   		data: data,
   	
-  	}).done(function(data){ showMessage(data) });
+  	}).done(function(data){ $.notify(data,'success') });
 }
 
-function showMessage(message){
+// function showMessage(message){
 	
-	var message_box = document.getElementById('message');
-	console.log(message_box);
-	message_box.innerHTML = message;
-	$("#message").show().delay(2000).fadeOut();
-}
+// 	var message_box = document.getElementById('message');
+// 	console.log(message_box);
+// 	message_box.innerHTML = message;
+// 	$("#message").show().delay(2000).fadeOut();
+// }
