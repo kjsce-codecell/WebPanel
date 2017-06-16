@@ -5,11 +5,11 @@
 	
 		<h1>Paritcipant List</h1>
 	<div class="container-fluid">
-		<form action="" class="form">
+		<form method="get" action="." class="form">
 			<ul class="search nav navbar-nav navbar-right">
 				<li>
 					<div class="form-group">
-						<input type="text" class="form-control">
+						<input type="text" name="q" class="form-control">
 					</div>
 				</li>
 				<li>
@@ -20,7 +20,7 @@
 			</ul>
 		</form>
 	</div>
-	<form method="get" action="/register/view">
+	<form method="get" action="/register/edit/">
 	<table class="table">
 		<thead>
 			<tr>
@@ -42,12 +42,12 @@
 					<td>{% if entry.present %} Yes {% else %} No {% endif %}</td>
 					{% else %}
 					<td>
-						<input class="" type="checkbox" name=""
+						<input class="" type="checkbox" name="paid"
 						 {% if entry.paid %} checked {% endif %}
 						 >
 					</td>
 					<td>
-						<input class="" type="checkbox" name=""
+						<input class="" type="checkbox" name="present"
 						{% if entry.present %} checked {% endif %}
 						> 
 					</td>
@@ -60,5 +60,13 @@
 	<input type="submit" value="Save Changes" />
 	{% endif %}
 	</form>
+
+	{% if not view %}
+	<form action="/register/edit/" method="post">
+		{% csrf_token %}
+		{{ form }}
+		<input type="submit" value="Add" />
+	</form>
+	{% endif %}
 
 {% endblock %}
