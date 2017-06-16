@@ -1,0 +1,64 @@
+{% extends "contestReg/index.html" %}
+
+{% block content %}
+
+	
+		<h1>Paritcipant List</h1>
+	<div class="container-fluid">
+		<form action="" class="form">
+			<ul class="search nav navbar-nav navbar-right">
+				<li>
+					<div class="form-group">
+						<input type="text" class="form-control">
+					</div>
+				</li>
+				<li>
+					<div class="form-group">
+						<input class=" form-control btn btn-default " type="submit" value="search"/>
+					</div>
+				</li>
+			</ul>
+		</form>
+	</div>
+	<form method="get" action="/register/view">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Number</th>
+				<th>Paid</th>
+				<th>Present</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for entry in data %}
+				<tr >
+					<td>{{entry.name}}</td>
+					<td>{{entry.email}}</td>
+					<td>{{entry.number}}</td>
+					{% if view %}
+					<td>{% if entry.paid %} Yes {% else %} No {% endif %}</td>
+					<td>{% if entry.present %} Yes {% else %} No {% endif %}</td>
+					{% else %}
+					<td>
+						<input class="" type="checkbox" name=""
+						 {% if entry.paid %} checked {% endif %}
+						 >
+					</td>
+					<td>
+						<input class="" type="checkbox" name=""
+						{% if entry.present %} checked {% endif %}
+						> 
+					</td>
+					{% endif %}
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	{% if not view  %}
+	<input type="submit" value="Save Changes" />
+	{% endif %}
+	</form>
+
+{% endblock %}
