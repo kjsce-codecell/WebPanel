@@ -1,14 +1,14 @@
 body{
-	background: rgba(214,214,233,2);
+	background: lightblue;
 }
 
 h1 {
 	padding: 10px;
-	background: rgba(215,14,225,0.54);
+	background: rgba(215,136,225,0.54);
 }
 
 .table{
-	background: rgba(0,255,2,0.5);
+	background: rgba(229,255,23,0.6);
 }
 .search li{
 	margin: 10px;

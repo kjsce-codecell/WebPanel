@@ -9,6 +9,14 @@
 	<title>{{title}}</title>
 </head>
 <body>
+
+	
+	<div class="container">
+		<br />		
+		<p id ="message" class="alert alert-success"> </p>
+	
+	</div>
+	
 	<div class="container">
 	{% block content %}
 	{% endblock %}
@@ -25,6 +33,17 @@
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="{% static 'js/index.js' %}"></script>
+<script>
+	
+	$(document).ready(function(){
+		$('#message').hide();
+		$('.saveme').click(function(event){
+		form_id = event.target.getAttribute('data');
+		SaveData(form_id);
+	});
+	});
+</script>	
 </body>
 </html>

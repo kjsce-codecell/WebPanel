@@ -41,26 +41,26 @@
 					<td>{% if entry.paid %} Yes {% else %} No {% endif %}</td>
 					<td>{% if entry.present %} Yes {% else %} No {% endif %}</td>
 					{% else %}
-					<form method="post" action="/register/save/">
+					<!-- <form method="post"  action="."> -->
 
 						{% csrf_token %}
 						<td>
-						<input class="" type="checkbox" name="paid"
+						<input id="paid{{entry.id}}" class="" type="checkbox" name="paid"
 						 {% if entry.paid %} checked {% endif %}
-						 >
+						 />
 					</td>
 					<td>
-						<input class="" type="checkbox" name="present"
+						<input id="present{{entry.id}}" class="" type="checkbox" name="present"
 						{% if entry.present %} checked {% endif %}
-						> 
+						/> 
 					</td>
 
 						
 					<td>
-						<input class="hide" name="id" type="text" value="{{entry.id}}">
-						<input class="btn btn-info" type="submit" value="save">
+						<input class="hide" name="id" type="text" value="{{entry.id}}" />
+						<input  class="saveme btn btn-info" data="{{entry.id}}" type="submit" value="save" />
 					</td>
-					</form>
+					<!-- </form> -->
 					{% endif %}
 				</tr>
 			{% endfor %}
