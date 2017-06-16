@@ -5,6 +5,19 @@ from .models import Participant
 from .forms import AddNewParticipant
 
 
+def save(request):
+	if request.method == "POST":
+		paid = request.POST.get('paid','')
+		present = request.POST.get('present','')
+		paid = False if paid is '' else True
+		present = False if present is '' else True
+		id = request.POST.get('id','')
+		query = Participant.objects.get(id=id)
+		query.paid = paid
+		query.present = present
+		query.save()
+	return redirect('/register/edit/')
+
 
 
 def view(request):
@@ -18,7 +31,7 @@ def view(request):
 		data = Participant.objects.all();
 	#template = get_template('contestReg/index.html')
 	return render(request,'contestReg/edit.html',
-		{"title": "Chaitya Shah", "view": True,"data": data})
+		{"title": "Chaitya Shah", "view": True,"data": data,'q':q})
 
 def edit(request):
 	print(request.method)
@@ -39,9 +52,10 @@ def edit(request):
 			data = Participant.objects.filter(name__startswith = q);
 		else:
 			data = Participant.objects.all();
+
 		#template = get_template('contestReg/index.html')
 		return render(request,'contestReg/edit.html',
-			{"title": "Chaitya Shah", "view": False,"data": data,"form":form})
+			{"title": "Chaitya Shah", "view": False,"data": data,"form":form,'q':q})
 
 
 # Create your views here.

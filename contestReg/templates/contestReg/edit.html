@@ -9,7 +9,7 @@
 			<ul class="search nav navbar-nav navbar-right">
 				<li>
 					<div class="form-group">
-						<input type="text" name="q" class="form-control">
+						<input type="text" name="q" value="{{q}}" class="form-control">
 					</div>
 				</li>
 				<li>
@@ -20,7 +20,7 @@
 			</ul>
 		</form>
 	</div>
-	<form method="get" action="/register/edit/">
+
 	<table class="table">
 		<thead>
 			<tr>
@@ -41,7 +41,10 @@
 					<td>{% if entry.paid %} Yes {% else %} No {% endif %}</td>
 					<td>{% if entry.present %} Yes {% else %} No {% endif %}</td>
 					{% else %}
-					<td>
+					<form method="post" action="/register/save/">
+
+						{% csrf_token %}
+						<td>
 						<input class="" type="checkbox" name="paid"
 						 {% if entry.paid %} checked {% endif %}
 						 >
@@ -51,22 +54,32 @@
 						{% if entry.present %} checked {% endif %}
 						> 
 					</td>
+
+						
+					<td>
+						<input class="hide" name="id" type="text" value="{{entry.id}}">
+						<input class="btn btn-info" type="submit" value="save">
+					</td>
+					</form>
 					{% endif %}
 				</tr>
 			{% endfor %}
 		</tbody>
 	</table>
-	{% if not view  %}
-	<input type="submit" value="Save Changes" />
-	{% endif %}
-	</form>
+	
 
-	{% if not view %}
-	<form action="/register/edit/" method="post">
+	<br>
+	<br>
+	<br>
+	<div class="container">
+		{% if not view %}
+	<form class="form-add" action="/register/edit/" method="post">
 		{% csrf_token %}
 		{{ form }}
-		<input type="submit" value="Add" />
+		
+		<input class="btn btn-info " type="submit" value="Add" />
 	</form>
 	{% endif %}
+	</div>
 
 {% endblock %}
