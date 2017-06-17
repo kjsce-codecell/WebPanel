@@ -9,14 +9,14 @@
 	<title>{{title}}</title>
 </head>
 <body>
-
 	
+	{% if message %}
 	<div class="container">
 		<br />		
-		<p id ="message" class="alert alert-success"> </p>
+		<p class="alert alert-success">{{ message }}</p>
 	
 	</div>
-	
+	{%  endif %}
 	<div class="container">
 	{% block content %}
 	{% endblock %}

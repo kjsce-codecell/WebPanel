@@ -42,7 +42,7 @@
 					<td>{% if entry.present %} Yes {% else %} No {% endif %}</td>
 					{% else %}
 					<!-- <form method="post"  action="."> -->
-
+						
 						{% csrf_token %}
 						<td>
 						<input id="paid{{entry.id}}" class="" type="checkbox" name="paid"
@@ -60,8 +60,19 @@
 						<input class="hide" name="id" type="text" value="{{entry.id}}" />
 						<input  class="saveme btn btn-info" data="{{entry.id}}" type="submit" value="save" />
 					</td>
+
 					<!-- </form> -->
 					{% endif %}
+					{% if delete %}
+						<td>
+							<form method="post" action="/register/delete/">
+								{% csrf_token %}
+								<input class="hide" name="id" type="text" value="{{entry.id}}">
+								<input class="btn btn-danger" type="submit" value="delete">
+							</form>
+						</td>
+					{% endif %}
+
 				</tr>
 			{% endfor %}
 		</tbody>

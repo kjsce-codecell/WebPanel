@@ -5,6 +5,10 @@ from .models import Participant
 from .forms import AddNewParticipant
 
 
+
+def home(request):
+	return redirect('/register/edit')
+
 def save(request):
 	# subject to change
 
@@ -23,6 +27,23 @@ def save(request):
 		message =  "changes for "+ query.name.lower()+ " saved"
 	return HttpResponse(message);
 
+def delete(request):
+	if request.method == "POST":
+		id = request.POST.get('id',0)
+		query = Participant.objects.get(id=id);
+
+		query.delete();
+		return redirect('/register/delete/')
+	else:
+		q = request.GET.get('q','')
+		if q is not '':
+			data = Participant.objects.filter(name__startswith = q);
+		else:
+			data = Participant.objects.all();
+		return render(request,'contestReg/edit.html',
+		{"title": "View", "view": True,"data": data,'q':q,'delete': True})
+
+
 
 
 def view(request):
@@ -36,7 +57,7 @@ def view(request):
 		data = Participant.objects.all();
 	#template = get_template('contestReg/index.html')
 	return render(request,'contestReg/edit.html',
-		{"title": "Chaitya Shah", "view": True,"data": data,'q':q})
+		{"title": "View", "view": True,"data": data,'q':q})
 
 def edit(request):
 
@@ -49,7 +70,7 @@ def edit(request):
 
 		if form.is_valid():
 			form.save()
-			return redirect('/register/view')
+			return redirect('/register/edit/')
 	else:
 		form = AddNewParticipant()
 
@@ -62,7 +83,7 @@ def edit(request):
 
 		#template = get_template('contestReg/index.html')
 		return render(request,'contestReg/edit.html',
-			{"title": "Chaitya Shah", "view": False,"data": data,"form":form,'q':q,'message':message})
+			{"title": "Edit", "view": False,"data": data,"form":form,'q':q,'message':message})
 
 
 # Create your views here.
