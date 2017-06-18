@@ -31,7 +31,6 @@ function getCookie(name) {
 		"present": present 
 	};
 	makeCall(data,"http://localhost:8000/register/save/");
-  	
 
 };
 
@@ -49,13 +48,12 @@ function makeCall(data,url){
 	
 	// make call
 
-	$.post({
+	$.ajax({
   		type: "POST",
   		url: url,
   		data: data,
-  	
+
   	}).done(function(data){ 
-  		$.notify(data,'success') 
+  		//$.notify(data,'success')
   	});
 }
-

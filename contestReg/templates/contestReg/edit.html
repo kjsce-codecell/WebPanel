@@ -45,12 +45,12 @@
 						
 						{% csrf_token %}
 						<td>
-						<input id="paid{{entry.id}}" class="" type="checkbox" name="paid"
+						<input id="paid{{entry.id}}" class="saveme" type="checkbox" name="paid" data="{{entry.id}}"
 						 {% if entry.paid %} checked {% endif %}
 						 />
 					</td>
 					<td>
-						<input id="present{{entry.id}}" class="" type="checkbox" name="present"
+						<input id="present{{entry.id}}" class="saveme" type="checkbox" name="present" data="{{entry.id}}"
 						{% if entry.present %} checked {% endif %}
 						/> 
 					</td>
@@ -58,7 +58,6 @@
 						
 					<td>
 						<input class="hide" name="id" type="text" value="{{entry.id}}" />
-						<input  class="saveme btn btn-info" data="{{entry.id}}" type="submit" value="save" />
 					</td>
 
 					<!-- </form> -->
