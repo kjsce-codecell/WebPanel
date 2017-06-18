@@ -55,11 +55,6 @@
 						/> 
 					</td>
 
-						
-					<td>
-						<input class="hide" name="id" type="text" value="{{entry.id}}" />
-					</td>
-
 					<!-- </form> -->
 					{% endif %}
 					{% if delete %}
@@ -71,12 +66,10 @@
 							</form>
 						</td>
 					{% endif %}
-
 				</tr>
 			{% endfor %}
 		</tbody>
 	</table>
-	
 
 	<br>
 	<br>
@@ -86,7 +79,6 @@
 	<form class="form-add" action="/register/edit/" method="post">
 		{% csrf_token %}
 		{{ form }}
-		
 		<input class="btn btn-info " type="submit" value="Add" />
 	</form>
 	{% endif %}
