@@ -26,7 +26,7 @@ function getCookie(name) {
 		"paid": paid,
 		"present": present 
 	};
-	makeCall(data,"http://localhost:8000/register/save/");
+	makeCall(data,"/register/save/");
 };
 
 function makeCall(data,url){
@@ -43,7 +43,8 @@ function makeCall(data,url){
 			url: url,
 			data: data,
 
-		}).done(function(data){ 
-			//$.notify(data,'success')
+		}).done(function(data){
+			$.notify.defaults({autoHideDelay: 1000}); 
+			$.notify(data,'success')
 		});
 }
