@@ -2,7 +2,6 @@
 
 {% block content %}
 
-	
 		<h1>Paritcipant List</h1>
 	<div class="container-fluid">
 		<form method="get" action="." class="form">
@@ -45,20 +44,14 @@
 						
 						{% csrf_token %}
 						<td>
-						<input id="paid{{entry.id}}" class="" type="checkbox" name="paid"
+						<input id="paid{{entry.id}}" class="saveme" type="checkbox" name="paid" data="{{entry.id}}"
 						 {% if entry.paid %} checked {% endif %}
 						 />
 					</td>
 					<td>
-						<input id="present{{entry.id}}" class="" type="checkbox" name="present"
+						<input id="present{{entry.id}}" class="saveme" type="checkbox" name="present" data="{{entry.id}}"
 						{% if entry.present %} checked {% endif %}
 						/> 
-					</td>
-
-						
-					<td>
-						<input class="hide" name="id" type="text" value="{{entry.id}}" />
-						<input  class="saveme btn btn-info" data="{{entry.id}}" type="submit" value="save" />
 					</td>
 
 					<!-- </form> -->
@@ -72,12 +65,10 @@
 							</form>
 						</td>
 					{% endif %}
-
 				</tr>
 			{% endfor %}
 		</tbody>
 	</table>
-	
 
 	<br>
 	<br>
@@ -87,8 +78,7 @@
 	<form class="form-add" action="/register/edit/" method="post">
 		{% csrf_token %}
 		{{ form }}
-		
-		<input class="btn btn-info " type="submit" value="Add" />
+		<input class="btn btn-info" type="submit" value="Add" />
 	</form>
 	{% endif %}
 	</div>
