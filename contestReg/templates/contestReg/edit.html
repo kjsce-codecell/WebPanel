@@ -2,7 +2,6 @@
 
 {% block content %}
 
-	
 		<h1>Paritcipant List</h1>
 	<div class="container-fluid">
 		<form method="get" action="." class="form">
@@ -79,7 +78,7 @@
 	<form class="form-add" action="/register/edit/" method="post">
 		{% csrf_token %}
 		{{ form }}
-		<input class="btn btn-info " type="submit" value="Add" />
+		<input class="btn btn-info" type="submit" value="Add" />
 	</form>
 	{% endif %}
 	</div>

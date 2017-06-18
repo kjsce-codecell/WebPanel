@@ -1,13 +1,11 @@
 from django.shortcuts import render,redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template.loader import get_template
 from .models import Participant
 from .forms import AddNewParticipant
 
-
-
 def home(request):
-	return redirect('/register/edit')
+	return redirect('/register/edit/')
 
 def save(request):
 	# subject to change
@@ -17,22 +15,27 @@ def save(request):
 		present = request.POST.get('present',0)
 		paid = True if paid is  '1' else False
 		present = True if present is '1' else False
-		id = request.POST.get('id','')
-		query = Participant.objects.get(id=id)
-		# print(paid)
-		# print(present)
-		query.paid = paid
-		query.present = present
-		query.save()
-		message =  "changes for "+ query.name.lower()+ " saved"
+		try:
+			id = request.POST.get('id','')
+			query = Participant.objects.get(id=id)
+			# print(paid)
+			# print(present)
+			query.paid = paid
+			query.present = present
+			query.save()
+			message =  "changes for "+ query.name.lower()+ " saved"
+		except:
+			pass
 	return HttpResponse(message);
 
 def delete(request):
 	if request.method == "POST":
 		id = request.POST.get('id',0)
-		query = Participant.objects.get(id=id);
-
-		query.delete();
+		try:
+			query = Participant.objects.get(id=id);
+			query.delete();
+		except:
+			pass
 		return redirect('/register/delete/')
 	else:
 		q = request.GET.get('q','')
@@ -42,9 +45,6 @@ def delete(request):
 			data = Participant.objects.all();
 		return render(request,'contestReg/edit.html',
 		{"title": "View", "view": True,"data": data,'q':q,'delete': True})
-
-
-
 
 def view(request):
 	#print(request)
@@ -60,11 +60,9 @@ def view(request):
 		{"title": "View", "view": True,"data": data,'q':q})
 
 def edit(request):
-
 	message = request.session.get('message')
 	request.session['message'] = None
 	#print(request)
-
 	if request.method == "POST":
 		form = AddNewParticipant(data = request.POST)
 
@@ -73,17 +71,14 @@ def edit(request):
 			return redirect('/register/edit/')
 	else:
 		form = AddNewParticipant()
-
 		q = request.GET.get('q','')
 		data = None
 		if q is not '':
 			data = Participant.objects.filter(name__startswith = q);
 		else:
 			data = Participant.objects.all();
-
 		#template = get_template('contestReg/index.html')
 		return render(request,'contestReg/edit.html',
 			{"title": "Edit", "view": False,"data": data,"form":form,'q':q,'message':message})
-
 
 # Create your views here.

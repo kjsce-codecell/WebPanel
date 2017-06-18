@@ -1,5 +1,3 @@
-
-
 function getCookie(name) {
 		var cookieValue = null;
 		if (document.cookie && document.cookie !== '') {
@@ -16,8 +14,6 @@ function getCookie(name) {
 		return cookieValue;
 }
 
-
-
  function SaveData(user_id){
 	var pre_id = "present"+user_id;
 	var paid_id = "paid"+user_id;
@@ -31,23 +27,17 @@ function getCookie(name) {
 		"present": present 
 	};
 	makeCall(data,"http://localhost:8000/register/save/");
-
 };
 
-
 function makeCall(data,url){
-	
 	// validation for Cross Site Request Forgery protection
-
 	var csrftoken = getCookie('csrftoken');
 	$.ajaxSetup({
 		beforeSend: function(xhr, settings) {
 			xhr.setRequestHeader("X-CSRFToken", csrftoken);
 		}
 	});
-	
 	// make call
-
 	$.ajax({
 			type: "POST",
 			url: url,
