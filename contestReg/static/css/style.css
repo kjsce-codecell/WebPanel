@@ -1,15 +1,16 @@
 body{
-	background: lightblue;
+}
+
+.hide{
+	display: none !important;
 }
 
 h1 {
 	padding: 10px;
-	background: rgba(215,136,225,0.54);
+	text-align: center;
+	
 }
 
-.table{
-	background: rgba(229,255,23,0.6);
-}
 .search li{
 	margin: 10px;
 }

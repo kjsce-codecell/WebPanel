@@ -42,9 +42,13 @@ function makeCall(data,url){
 			type: "POST",
 			url: url,
 			data: data,
+			error: function(xhr, ajaxOptions, err){
+				$.notify(err,'error');
+			}
 
 		}).done(function(data){
 			$.notify.defaults({autoHideDelay: 1000}); 
+			//console.log(log);
 			$.notify(data,'success')
 		});
 }

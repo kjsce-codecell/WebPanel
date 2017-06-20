@@ -5,11 +5,11 @@ class AddNewParticipant(forms.ModelForm):
     class Meta():
         model = Participant
         fields = '__all__'
-        widget = {
-        "name" : forms.TextInput(attrs={'class':'form-control'}),
-        "email": forms.TextInput(attrs={'class':'form-control'}),
-        "college": forms.TextInput(attrs={'class':'form-control'}),
-        "number": forms.TextInput(attrs={'class':'form-control'}),
+        widgets = {
+        "name" : forms.TextInput(attrs={'class':'form-control list-group-item'}),
+        "email": forms.TextInput(attrs={'class':'form-control list-group-item'}),
+        "college": forms.TextInput(attrs={'class':'form-control list-group-item'}),
+        "number": forms.TextInput(attrs={'class':'form-control list-group-item'}),
         # "": form.TextInput('class': 'form-control'),
         
         }
