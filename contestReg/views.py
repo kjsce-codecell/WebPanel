@@ -1,25 +1,25 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template.loader import get_template
-from .models import Participant
-from .forms import AddNewParticipant
+from django.urls import reverse
+from .models import Participant,LoginModel
+from .forms import AddNewParticipant,LoginForm,UploadFileForm
+from .utils import search,handle_uploaded_file
 
 def home(request):
 	return redirect('/register/edit/')
 
 def save(request):
-	# subject to change
+	
 
 	if request.method == "POST":
 		paid = request.POST.get('paid',0)
 		present = request.POST.get('present',0)
-		paid = True if paid is  '1' else False
+		paid = True if paid is '1' else False
 		present = True if present is '1' else False
 		try:
 			id = request.POST.get('id','')
 			query = Participant.objects.get(id=id)
-			# print(paid)
-			# print(present)
 			query.paid = paid
 			query.present = present
 			query.save()
@@ -28,7 +28,43 @@ def save(request):
 			pass
 	return HttpResponse(message);
 
+def logout(request):
+	request.session['logged'] = False
+	return HttpResponseRedirect('/register/login')
+
+
+def login(request):
+	
+
+	if request.method == 'POST':
+
+		username = request.POST.get('username')
+		password = request.POST.get('password')
+		print(password)
+		try:
+			query = LoginModel.objects.get(username=username)
+			print(query.password)
+			if query.password == password:
+				request.session['message'] = ''
+				request.session['logged'] = True
+				return redirect('/register/edit')
+			request.session['message'] = "Invalid password or username"
+		except:
+			request.session['message'] = "Invalid password or username"
+			redirect('/register/login')
+
+	message = ''
+	if('message' in request.session):
+		message= request.session['message']
+	forms = LoginForm()
+	
+	return render(request, 'contestReg/login.html',{"message":message,"title": "Login","forms": forms })
+
+
+
+
 def delete(request):
+
 	if request.method == "POST":
 		id = request.POST.get('id',0)
 		try:
@@ -43,42 +79,50 @@ def delete(request):
 			data = Participant.objects.filter(name__startswith = q);
 		else:
 			data = Participant.objects.all();
-		return render(request,'contestReg/edit.html',
+		return render(request,'contestReg/mainView.html',
 		{"title": "View", "view": True,"data": data,'q':q,'delete': True})
 
+
+
+
 def view(request):
-	#print(request)
-	data = Participant.objects.all();
-	data = None
-	q = request.GET.get('q','')
-	if q is not '':
-		data = Participant.objects.filter(name__startswith = q);
-	else:
-		data = Participant.objects.all();
-	#template = get_template('contestReg/index.html')
-	return render(request,'contestReg/edit.html',
+
+	data,q = search(request)
+
+	return render(request,'contestReg/mainView.html',
 		{"title": "View", "view": True,"data": data,'q':q})
 
+
+
+def upload_file(request):
+	if request.method == 'POST':
+		print(request.FILES)
+		form = UploadFileForm(request.POST, request.FILES)
+		if form.is_valid():
+			handle_uploaded_file(request.FILES['file'])
+			return HttpResponseRedirect('/register/edit/')
+	else:
+		form = UploadFileForm()
+	return render(request, 'contestReg/forms/upload.html', {'title':'Upload','form': form})
+
+
 def edit(request):
+
 	message = request.session.get('message')
 	request.session['message'] = None
-	#print(request)
-	if request.method == "POST":
-		form = AddNewParticipant(data = request.POST)
 
+	if request.method == "POST":
+
+		form = AddNewParticipant(data = request.POST)
 		if form.is_valid():
 			form.save()
 			return redirect('/register/edit/')
+		request.session['message'] = 'Something went wrong'
+		return redirect('/register/edit')
 	else:
 		form = AddNewParticipant()
-		q = request.GET.get('q','')
-		data = None
-		if q is not '':
-			data = Participant.objects.filter(name__startswith = q);
-		else:
-			data = Participant.objects.all();
-		#template = get_template('contestReg/index.html')
-		return render(request,'contestReg/edit.html',
+		data,q = search(request)
+
+		return render(request,'contestReg/mainView.html',
 			{"title": "Edit", "view": False,"data": data,"form":form,'q':q,'message':message})
 
-# Create your views here.

@@ -44,7 +44,7 @@ function makeCall(data,url){
 			data: data,
 			error: function(xhr, ajaxOptions, err){
 				$.notify(err,'error');
-			}
+			}.bind(this)
 
 		}).done(function(data){
 			$.notify.defaults({autoHideDelay: 1000}); 

@@ -1,4 +1,5 @@
 body{
+	background-color: rgba(221,221,221,0.5);
 }
 
 .hide{
@@ -27,6 +28,16 @@ h1 {
 	padding-bottom: 1%;
 }
 
+
+.login-form input, .login-form button{
+	margin-top: 2%;
+	margin-bottom: 2%;
+}
+
+.card-block{
+	border: 1px solid grey;
+	box-shadow: 10px 11px 12px -11px grey;
+}
 
 /*
 .form-add input{

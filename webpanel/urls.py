@@ -18,7 +18,7 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^register/',include('contestReg.urls')),
-    url(r'^',include('contestReg.urls'))
+    url(r'^register/',include('contestReg.urls'),name="register"),
+    #url(r'^',include('contestReg.urls'))
  	# url(r'^/',redirect('/register/edit/')) 	
 ]
