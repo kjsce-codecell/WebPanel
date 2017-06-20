@@ -4,7 +4,9 @@ body{
 .hide{
 	display: none !important;
 }
-
+.margin-bottom{
+	margin-bottom: 10px;
+}
 h1 {
 	padding: 10px;
 	text-align: center;

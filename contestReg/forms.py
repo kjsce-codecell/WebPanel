@@ -6,10 +6,11 @@ class AddNewParticipant(forms.ModelForm):
         model = Participant
         fields = '__all__'
         widgets = {
-        "name" : forms.TextInput(attrs={'class':'form-control list-group-item'}),
-        "email": forms.TextInput(attrs={'class':'form-control list-group-item'}),
-        "college": forms.TextInput(attrs={'class':'form-control list-group-item'}),
-        "number": forms.TextInput(attrs={'class':'form-control list-group-item'}),
+        "name" : forms.TextInput(attrs={'class':'form-control '}),
+        "email": forms.TextInput(attrs={'class':'form-control '}),
+        "college": forms.TextInput(attrs={'class':'form-control margin-bottom'}),
+        "number": forms.TextInput(attrs={'class':'form-control '}),
+        "paid": forms.CheckboxInput(attrs={'class':''})
         # "": form.TextInput('class': 'form-control'),
         
         }
