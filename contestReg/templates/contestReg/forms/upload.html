@@ -1,0 +1,36 @@
+{% extends 'contestReg/index.html' %}
+
+
+{%  block content %}
+
+	<div class="container">
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4 col-sm-12 col-xs-12 col-lg-4">
+				<div class="container">
+					<div class="card list-group">
+
+						<div class="card-block login-form">
+
+							<h1 class="text-center lead"><span class="fa fa-code"></span> CodeCell</h1>
+							<form method="POST" enctype="multipart/form-data" action="." class="form">
+								{% csrf_token %}
+								{{form.as_p}}
+								<button type="submit" class="btn btn-primary btn-block"><span class="fa fa-upload"></span> Upload</button>
+							</form>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4"></div>
+		</div>
+	</div>
+	
+
+{% endblock %}

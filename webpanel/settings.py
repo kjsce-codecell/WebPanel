@@ -32,12 +32,19 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'contestReg.apps.ContestregConfig',
+    'quiz.apps.QuizConfig',
+    'login.apps.LoginConfig',
 	'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+]
+
+FILE_UPLOAD_HANDLERS = [
+    'django.core.files.uploadhandler.MemoryFileUploadHandler',
+    'django.core.files.uploadhandler.TemporaryFileUploadHandler',
 ]
 
 MIDDLEWARE = [
@@ -48,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'contestReg.middleWare.auth.AuthenticationMiddleware',
 ]
 
 ROOT_URLCONF = 'webpanel.urls'
