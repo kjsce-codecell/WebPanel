@@ -26,9 +26,6 @@ def save(request):
 			pass
 	return HttpResponse(message);
 
-def logout(request):
-	request.session['logged'] = False
-	return HttpResponseRedirect('/register/login')
 
 
 def delete(request):
