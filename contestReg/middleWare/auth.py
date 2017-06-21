@@ -12,9 +12,8 @@ class AuthenticationMiddleware(object):
 		if '/login/' != request.get_full_path():
 		# print(dir(request))
 			print('checking....')
-			print(request.session.get('logged', False));
 			if request.session.get('logged',False) is not True:
-				print('Redirecting .....') 
+				print('Redirecting .....')
 				return HttpResponseRedirect('/login/')
 		response = self.get_response(request)
 		return response
