@@ -6,7 +6,6 @@ urlpatterns = [
 	url(r'view/$',views.view, name='view'),	
 	url(r'save/$',views.save, name='save'),
 	url(r'delete/$',views.delete,name='delete'),
-	url(r'login/$',views.login,name='login'),
 	url(r'logout/$',views.logout,name='logout'),
 	url(r'upload/$',views.upload_file,name='upload'),
 	url(r'^$',views.home,name='home')

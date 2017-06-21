@@ -32,6 +32,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'contestReg.apps.ContestregConfig',
+    'quiz.apps.QuizConfig',
+    'login.apps.LoginConfig',
 	'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

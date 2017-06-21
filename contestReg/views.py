@@ -2,16 +2,14 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template.loader import get_template
 from django.urls import reverse
-from .models import Participant,LoginModel
-from .forms import AddNewParticipant,LoginForm,UploadFileForm
+from .models import Participant
+from .forms import AddNewParticipant,UploadFileForm
 from .utils import search,handle_uploaded_file
 
 def home(request):
 	return redirect('/register/edit/')
 
 def save(request):
-	
-
 	if request.method == "POST":
 		paid = request.POST.get('paid',0)
 		present = request.POST.get('present',0)
@@ -31,36 +29,6 @@ def save(request):
 def logout(request):
 	request.session['logged'] = False
 	return HttpResponseRedirect('/register/login')
-
-
-def login(request):
-	
-
-	if request.method == 'POST':
-
-		username = request.POST.get('username')
-		password = request.POST.get('password')
-		print(password)
-		try:
-			query = LoginModel.objects.get(username=username)
-			print(query.password)
-			if query.password == password:
-				request.session['message'] = ''
-				request.session['logged'] = True
-				return redirect('/register/edit')
-			request.session['message'] = "Invalid password or username"
-		except:
-			request.session['message'] = "Invalid password or username"
-			redirect('/register/login')
-
-	message = ''
-	if('message' in request.session):
-		message= request.session['message']
-	forms = LoginForm()
-	
-	return render(request, 'contestReg/login.html',{"message":message,"title": "Login","forms": forms })
-
-
 
 
 def delete(request):
@@ -125,4 +93,3 @@ def edit(request):
 
 		return render(request,'contestReg/mainView.html',
 			{"title": "Edit", "view": False,"data": data,"form":form,'q':q,'message':message})
-
