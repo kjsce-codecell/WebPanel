@@ -3,7 +3,7 @@
 	<h1 class="display-4">Codecell Quiz: Week {{week}}</h1>
 </div>
 <div class="container-fluid">
-	<form method="post" action="/quiz/save" class="form horizontal-form">
+	<form method="post" action="/quiz/save/" class="form horizontal-form">
 	{% csrf_token %}
 		<div class="card">
 			{% for q in data %}
@@ -27,6 +27,7 @@
 			</div>
 			{% endfor %}
 		</div>
+		<br><br>
 		<div class="row">
 			<div class="col-md-3 col-sm-12">
 				<div class="form-group">
@@ -45,7 +46,7 @@
 			</div>
 			<div class="col-md-2 col-sm-12">
 				<div class="form-group">
-					<button class=" form-control btn btn-info btn-block" type="submit" value="search"><span class="fa fa-search"></span> Search</button>
+					<button class=" form-control btn btn-info btn-block" type="submit" value="submit_btn"><span class="fa fa-check"></span> Submit</button>
 				</div>
 			</div>
 		</div>

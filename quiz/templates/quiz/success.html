@@ -3,4 +3,12 @@
 	<h1 class="display-4">Codecell Quiz: Week 1</h1>
 </div>
 <br/>
-<p class="alert alert-success">{{ message | safe }}</p>
+{% if message %}
+<p class="alert alert-success">
+	{{ message | safe }}
+</p>
+{% else %}
+<p class="alert alert-danger">
+	{{ failure | safe }}
+</p>
+{% endif %}

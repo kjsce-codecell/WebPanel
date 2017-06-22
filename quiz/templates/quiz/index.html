@@ -14,6 +14,10 @@
 	<div class="container">
 	{% if quiz %}
 	{% include 'quiz/quiz.html' %}
+	{% elif ranks %}
+	{% include 'quiz/ranks.html' %}
+	{% elif weeks %}
+	{% include 'quiz/allQuiz.html' %}
 	{% else %}
 	{% include 'quiz/success.html' %}
 	{% endif %}
