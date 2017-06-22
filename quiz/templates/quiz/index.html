@@ -12,7 +12,11 @@
 </head>
 <body>
 	<div class="container">
+	{% if quiz %}
 	{% include 'quiz/quiz.html' %}
+	{% else %}
+	{% include 'quiz/success.html' %}
+	{% endif %}
 	</div>
 	<footer class="footer">
 		<div class="container">

@@ -1,21 +1,46 @@
 <br>
 <div class="container">
-	<h1 class="display-4">Codecell Quiz: Week 1</h1>
+	<h1 class="display-4">Codecell Quiz: Week {{week}}</h1>
 </div>
 <div class="container-fluid">
-	<form method="get" action="." class="form">
+	<form method="post" action="/quiz/save" class="form horizontal-form">
+	{% csrf_token %}
+		<div class="card">
+			{% for q in data %}
+			<div class="table table-hover card-header">
+				<thead>
+					<tr>
+						<th>
+							{{q.no}}.&emsp;
+						</th>
+						<th>
+							{{q.question}}<br>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for a in q.options %}
+					<input type="radio" id = "{{a}}" value = "{{a}}" name = "{{q.no}}">&emsp;
+					<label for = "{{a}}" class="control-label">{{a}}</label><br>
+					{% endfor %}
+				</tbody>
+			</div>
+			{% endfor %}
+		</div>
 		<div class="row">
-			<div class="col-md-7">
-			{% if not view %}
-				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddForm">
-					<span class="fa fa-plus "></span> Add Participant
-				</button>
-			{% endif %}
-
+			<div class="col-md-3 col-sm-12">
+				<div class="form-group">
+					<input type="text" name="Name" class="form-control"  placeholder="Enter Name..." required/>
+				</div>
 			</div>
 			<div class="col-md-3 col-sm-12">
 				<div class="form-group">
-					<input type="text" name="q" value="{{q}}" class="form-control"  placeholder="Enter Name..." />
+					<input type="number" name="RollNo" class="form-control"  placeholder="Enter Roll Number..." required/>
+				</div>
+			</div>
+			<div class="col-md-3 col-sm-12">
+				<div class="form-group">
+					<input type="email" name="Email" class="form-control"  placeholder="Enter Email..." required/>
 				</div>
 			</div>
 			<div class="col-md-2 col-sm-12">
