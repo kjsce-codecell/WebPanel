@@ -1,0 +1,86 @@
+{% extends "contestReg/index.html" %}
+
+{% block content %}
+
+	<h1>Paritcipant List</h1>
+	<div class="container-fluid">
+		<form method="get" action="." class="form">
+			<ul class="search nav navbar-nav navbar-right">
+				<li>
+					<div class="form-group">
+						<input type="text" name="q" value="{{q}}" class="form-control">
+					</div>
+				</li>
+				<li>
+					<div class="form-group">
+						<input class=" form-control btn btn-default " type="submit" value="search"/>
+					</div>
+				</li>
+			</ul>
+		</form>
+	</div>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Number</th>
+				<th>Paid</th>
+				<th>Present</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for entry in data %}
+				<tr >
+					<td>{{entry.name}}</td>
+					<td>{{entry.email}}</td>
+					<td>{{entry.number}}</td>
+					{% if view %}
+					<td>{% if entry.paid %} Yes {% else %} No {% endif %}</td>
+					<td>{% if entry.present %} Yes {% else %} No {% endif %}</td>
+					{% else %}
+					<!-- <form method="post"  action="."> -->
+						
+						{% csrf_token %}
+						<td>
+						<input id="paid{{entry.id}}" class="saveme" type="checkbox" name="paid" data="{{entry.id}}"
+						 {% if entry.paid %} checked {% endif %}
+						 />
+					</td>
+					<td>
+						<input id="present{{entry.id}}" class="saveme" type="checkbox" name="present" data="{{entry.id}}"
+						{% if entry.present %} checked {% endif %}
+						/> 
+					</td>
+
+					<!-- </form> -->
+					{% endif %}
+					{% if delete %}
+						<td>
+							<form method="post" action="/register/delete/">
+								{% csrf_token %}
+								<input class="hide" name="id" type="text" value="{{entry.id}}">
+								<input class="btn btn-danger" type="submit" value="delete">
+							</form>
+						</td>
+					{% endif %}
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<br>
+	<br>
+	<br>
+	<div class="container">
+		{% if not view %}
+	<form class="form-add" action="/register/edit/" method="post">
+		{% csrf_token %}
+		{{ form }}
+		<input class="btn btn-info" type="submit" value="Add" />
+	</form>
+	{% endif %}
+	</div>
+
+{% endblock %}

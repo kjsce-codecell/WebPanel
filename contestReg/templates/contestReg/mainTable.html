@@ -1,0 +1,49 @@
+<table class="table table-hover card-header">
+		<thead class="">
+			<tr class="">
+				<th>Name</th>
+				<th>Email</th>
+				<th>Number</th>
+				<th>Paid</th>
+				<th>Present</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for entry in data %}
+				<tr class="form">
+					<td >{{entry.name}}</td>
+					<td>{{entry.email}}</td>
+					<td>{{entry.number}}</td>
+					{% if view %}
+					<td>{% if entry.paid %} Yes {% else %} No {% endif %}</td>
+					<td>{% if entry.present %} Yes {% else %} No {% endif %}</td>
+					{% else %}
+					<!-- <form method="post"  action="."> -->
+						
+						{% csrf_token %}
+						<td class="form-group">
+						<input id="paid{{entry.id}}" class="form-control saveme" type="checkbox" name="paid" data="{{entry.id}}"
+						 {% if entry.paid %} checked {% endif %}
+						 />
+					</td>
+					<td>
+						<input id="present{{entry.id}}" class="saveme form-control" type="checkbox" name="present" data="{{entry.id}}"
+						{% if entry.present %} checked {% endif %}
+						/> 
+					</td>
+
+					<!-- </form> -->
+					{% endif %}
+					{% if delete %}
+						<td>
+							<form method="post" action="/register/delete/">
+								{% csrf_token %}
+								<input class="hide" name="id" type="text" value="{{entry.id}}">
+								<button class="btn btn-danger" type="submit" value="delete"><span class="fa fa-trash-o"></span> Delete</button>
+							</form>
+						</td>
+					{% endif %}
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
