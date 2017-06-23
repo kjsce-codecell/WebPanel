@@ -23,7 +23,7 @@
 	{% endblock %}
 
 	</div>
-	<footer class="footer">
+	<footer class="footer float-bottom">
 		<div class="container">
 			<p class="grey">
 			KJSCE CodeCell&nbsp;&copy; 2017
@@ -38,13 +38,10 @@
 <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 <script src="{% static 'js/notify.min.js' %}"></script>
 <script src="{% static 'js/index.js' %}"></script>
+
 <script>
 	$(document).ready(function(){
 		$('#message').hide();
-		$('.saveme').click(function(event){
-		form_id = event.target.getAttribute('data');
-		SaveData(form_id);
-	});
 	});
 </script>
 </body>

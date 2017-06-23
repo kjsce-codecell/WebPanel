@@ -1,0 +1,64 @@
+{% extends 'login/index.html' %}
+
+{%  block content %}
+	<style>
+		.row{
+			margin-bottom: 30px;
+		}
+	</style>
+
+	<div class="container">
+		<div class="jumbotron">
+			<p class="display-4 text-center">
+				Welcome to CodeCell 
+			</p>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
+					 <div class="card">
+					      <div class="card-block">
+					        <h3 class="card-title">Registeraton App</h3>
+					        <p class="card-text">
+					        	Manage contest participants.
+					        </p>
+					        <a href="/register/edit" class="btn btn-primary">Go</a>
+					      </div>
+					  </div>
+				</div>
+				<div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
+					<div class="card">
+					      <div class="card-block">
+					        <h3 class="card-title">Quiz App</h3>
+					        <p class="card-text">
+								Weekly quiz contest app
+					        </p>
+					        <a href="/quiz/" class="btn btn-primary">Go</a>
+					      </div>
+					  </div>
+				</div>
+				<div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
+					
+				</div>
+			</div>
+			
+		</div>
+			
+		<br><br>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-9">
+					
+				</div>
+				<div class="col-md-3">
+					{% include 'login/logout.html' %}
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+
+
+{% endblock %}

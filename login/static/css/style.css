@@ -25,6 +25,8 @@ h1 {
 .footer{
 	padding: 5%;
 	padding-bottom: 1%;
+	position: relative;
+	bottom: 0px;
 }
 
 .login-form input, .login-form button{

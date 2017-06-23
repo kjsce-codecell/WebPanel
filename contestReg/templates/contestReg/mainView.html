@@ -36,7 +36,20 @@
 	</div>
 	<br/><br />
 
-	{% include "contestReg/forms/logout.html" %}
+	<div class="container">
+	<div class="row">
+		<div class="col-md-10">
+			<form action="/register/upload">
+			<button type="submit" class="btn btn-primary">
+				Export from Sheet
+			</button>
+		</form>
+		</div>
+		<div class="col-md-2">
+			{% include 'login/logout.html' %}
+		</div>
+	</div>
+</div>
 
 	
 	<div class="modal fade" id="AddForm">

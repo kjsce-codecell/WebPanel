@@ -10,7 +10,6 @@ class AuthenticationMiddleware(object):
 		# Code to be executed for each request before
 		# the view (and later middleware) are called.
 		if '/login/' != request.get_full_path():
-		# print(dir(request))
 			print('checking....')
 			if request.session.get('logged',False) is not True:
 				print('Redirecting .....')
