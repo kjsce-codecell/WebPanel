@@ -7,17 +7,17 @@
 		<table class="table table-hover card-header">
 			<thead>
 				<tr>
-					<th>Week Number</th>
-					<th>Questions</th>
-					<th>Ranklist</th>
+					<th class = "text-center">Week Number</th>
+					<th class = "text-center">Questions</th>
+					<th class = "text-center">Ranklist</th>
 				</tr>
 			</thead>
 			<tbody>
 				{% for u in data %}
 				<tr>
-					<td>{{u}}</td>
-					<td class = "inlink" onclick="window.location = '/quiz/'">View Quiz</td>
-					<td class = "inlink" onclick="window.location = '/quiz/ranklist/week{{u}}'">View Ranklist</td>
+					<td class = "text-center">{{u}}</td>
+					<td class = "inlink text-center" ><a href="/quiz/"> View Quiz</a></td>
+					<td class = "inlink text-center" ><a href ="/quiz/ranklist/week{{u}}"> View Ranklist</a></td>
 				</tr>
 				{% endfor %}
 			</tbody>
