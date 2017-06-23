@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Week, Question, Option, User, Points
+from django.db.models import Sum
 
 # Create your views here.
 
@@ -40,7 +41,7 @@ def success(request):
 				points = points + 1
 		if Points.objects.filter(user = user, week = w).count() == 0:
 			Points.objects.create(user = user, week = w, point = points)
-			total = Points.objects.filter(user = user).annotate(num = models.Sum('point'))[0].num
+			total = Points.objects.filter(user = user).annotate(num = Sum('point'))[0].num
 			message = "Results are saved, "+str(points)+" points added.<br>Your total is: "+str(total)+"<br>Answers wil be displayed by the end of the week.<br>Your choices are mailed to you.<br>"
 			return render(request, 'quiz/index.html', {"title": "Done", "message": message, "quiz": False})
 		else:
