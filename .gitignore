@@ -99,4 +99,4 @@ ENV/
 .mypy_cache/
 
 #database file
-*.sqlite3
+# not ingoring fornow
