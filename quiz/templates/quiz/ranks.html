@@ -1,0 +1,28 @@
+<br>
+<div class="container">
+	<h1 class="display-4">Codecell Quiz Ranks: Week {{week}}</h1>
+</div>
+<div class="container-fluid">
+	<div class="card">
+		<table class="table table-hover card-header">
+			<thead>
+				<tr>
+					<th>Rank</th>
+					<th>Name</th>
+					<th>Roll Number</th>
+					<th>Points</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for u in data %}
+				<tr>
+					<td>{{u.rank}}</td>
+					<td>{{u.name}}</td>
+					<td>{{u.rollNo}}</td>
+					<td>{{u.points}}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>

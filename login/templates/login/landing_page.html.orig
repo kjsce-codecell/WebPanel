@@ -10,12 +10,20 @@
 	<div class="container">
 		<div class="jumbotron">
 			<p class="display-4 text-center">
+<<<<<<< HEAD
 				Welcome to CodeCell 
+=======
+				Welcome to CodeCell
+>>>>>>> e4fdbeda6e3be1fac91dc018d0136f9dc7e5a64d
 			</p>
 		</div>
 		<div class="container">
 			<div class="row">
+<<<<<<< HEAD
+				<div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
+=======
 				<div class="col-md-4 col-lg-4 col-sm-6 col-xs-12 ">
+>>>>>>> e4fdbeda6e3be1fac91dc018d0136f9dc7e5a64d
 					 <div class="card">
 					      <div class="card-block">
 					        <h3 class="card-title">Registeraton App</h3>
@@ -33,22 +41,41 @@
 					        <p class="card-text">
 								Weekly quiz contest app
 					        </p>
+<<<<<<< HEAD
+					        <a href="/quiz/" class="btn btn-primary">Go</a>
+=======
 							  <a href="/quiz/" class="btn btn-primary"> Go </a>
 							  <a href="/quiz/ranklist" class="btn btn-primary"> Ranklist </a>
+>>>>>>> e4fdbeda6e3be1fac91dc018d0136f9dc7e5a64d
 					      </div>
 					  </div>
 				</div>
 				<div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
+<<<<<<< HEAD
+					
+				</div>
+			</div>
+			
+		</div>
+			
+=======
 
 				</div>
 			</div>
 
 		</div>
+
+>>>>>>> e4fdbeda6e3be1fac91dc018d0136f9dc7e5a64d
 		<br><br>
 
 		<div class="container">
 			<div class="row">
 				<div class="col-md-9">
+<<<<<<< HEAD
+					
+=======
+
+>>>>>>> e4fdbeda6e3be1fac91dc018d0136f9dc7e5a64d
 				</div>
 				<div class="col-md-3">
 					{% include 'login/logout.html' %}
@@ -60,4 +87,8 @@
 	</div>
 
 
+<<<<<<< HEAD
 {% endblock %}
+=======
+{% endblock %}
+>>>>>>> e4fdbeda6e3be1fac91dc018d0136f9dc7e5a64d
