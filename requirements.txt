@@ -1,3 +1,4 @@
 Django==1.10
 openpyxl==2.4.8
 Jinja2==2.8
+bcrypt==3.1.3
