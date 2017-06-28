@@ -10,7 +10,7 @@ from django.conf import settings
 # Create your views here.
 def index(request):
     c={}
-    return render(request,'index.html',c)
+    return render(request,'shortener/index.html',c)
 
 def redirectOriginal(request,shortId):
     url=get_object_or_404(Urls,pk=shortId)
