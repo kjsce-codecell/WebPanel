@@ -1,5 +1,5 @@
 <div align="center">
-        <h1 align="center">WebPanel <img src="codecell.ico" style="width:25px;height:25px;"> </h1>
+        <h1 align="center">WebPanel :computer: </h1>
         <h3>
                 <a href="#"> login </a>
                 <span> | </span>
