@@ -130,3 +130,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 SITE_URL='http://127.0.0.1:8000/shortener'
+
+LOGIN_EXEMPT_URLS=(
+	r'^login/$',
+    r'^shortener/(?P<shortId>[-\w]{1,7})$',
+    )
