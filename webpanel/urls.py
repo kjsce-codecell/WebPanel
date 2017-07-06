@@ -20,7 +20,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('login.urls'), name = "Login"),
     url(r'^register/',include('contestReg.urls'),name="register"),
-    url(r'^quiz/', include('quiz.urls'), name = 'QuizApp'),
+    url(r'^feedback/', include('feedbackform.urls'), name = 'FeedBack'),
     #url(r'^',include('contestReg.urls'))
  	# url(r'^/',redirect('/register/edit/')) 	
 ]

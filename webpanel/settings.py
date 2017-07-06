@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'contestReg.apps.ContestregConfig',
-    'quiz.apps.QuizConfig',
+    'feedbackform.apps.FeedbackformConfig',
     'login.apps.LoginConfig',
 	'django.contrib.admin',
     'django.contrib.auth',

@@ -1,0 +1,113 @@
+<br>
+<div class="container">
+	<h1 class="display-4">Create A Feedback Form</h1>
+</div>
+<div class="container-fluid">
+	<div class="card">
+		<div class="table table-hover card-header">
+			<tbody>
+				<form method="post" id = "mForm"  class="form horizontal-form">
+				{% csrf_token %}
+					<tr class = "form-group">
+						<label for="name" class = "control-label">Form Name:&emsp;</label>
+						<input type="text" id = "name" class = "form-control" name="FormName">
+					</tr>
+					<div class="hide" id="ref"></div>
+				</form>
+				<br>
+				<tr>
+					<button onclick = "addText()" id = "0" class = "btn btn-primary">Add Text Input <span class = "fa fa-plus"></span></button>&emsp;
+					<button onclick = "addCheckBox()" id = "1" class = "btn btn-primary">Add CheckBox <span class = "fa fa-plus"></span></button>&emsp;
+					<button onclick = "addRadio()" id = "2" class = "btn btn-primary">Add Radio <span class = "fa fa-plus"></span></button>
+					<button onclick="loadContent()" class = "btn btn-success pull-right">Submit <span class = "fa fa-send"></span></button>
+				</tr>
+			</tbody>
+		</div>
+	</div>
+</div>
+<script>
+	var text = 0;
+	var radio = 0;
+	var checkBox = 0;
+	var radio_c = [];
+	var checkBox_c = [];
+	addText = ()=>{
+		text = text + 1;
+		inString = "<tr class = \"form-group\"><label for = \"text"+text+"\" class = \"control-label\">Question:&emsp;</label><input type = \"text\" id = \"text"+text+"\" class = \"form-control\" name = \"FormText"+text+"\"></tr>";
+		document.getElementById('ref').insertAdjacentHTML('beforebegin',inString);
+	}
+	addRadio = ()=>{
+		radio = radio + 1;
+		inString = "<tr class = \"form-group\"><label for = \"radio"+radio+"\" class = \"control-label\">Radio:&emsp;</label><input type = \"text\" id = \"radio"+radio+"\" class = \"form-control\" name = \"FormRadio"+radio+"\"></tr><tr><button type = \"button\" onclick = \"addRadioChoice("+radio+")\" id = \"radio_but"+radio+"\"class = \"btn btn-primary pull-right\">Add Choice <span class = \"fa fa-plus\"></span></button><br></tr>";
+		document.getElementById('ref').insertAdjacentHTML('beforebegin',inString);
+	}
+	addRadioChoice = (radios)=>{
+		but = "radio_but"+radios;
+		if(radio_c[radios-1])
+			radio_c[radios-1] = radio_c[radios-1]+1;
+		else
+			radio_c[radios-1] = 1;
+		inString = "<label for = \"radioChoice"+radios+"-"+radio_c[radios-1]+"\" class = \"control-label\">Choice "+radio_c[radios-1]+":&emsp;</label><input type = \"text\" id = \"radioChoice"+radios+"-"+radio_c[radios-1]+"\" class = \"form-control\" name = \"FormRadioChoice"+radios+"-"+radio_c[radios-1]+"\">";
+		var tr = document.createElement('tr');
+		tr.innerHTML = inString;
+		document.getElementById('mForm').insertBefore(tr, document.getElementById(but));
+	}
+	addCheckBox = ()=>{
+		checkBox = checkBox + 1;
+		inString = "<tr class = \"form-group\"><label for = \"checkBox"+checkBox+"\" class = \"control-label\">CheckBox:&emsp;</label><input type = \"text\" id = \"checkBox"+checkBox+"\" class = \"form-control\" name = \"FormCheckBox"+checkBox+"\"></tr><tr><button type = \"button\" onclick = \"addCheckBoxChoice("+checkBox+")\" id = \"checkBox_but"+checkBox+"\"class = \"btn btn-primary pull-right\">Add Choice <span class = \"fa fa-plus\"></span></button><br></tr>";
+		document.getElementById('ref').insertAdjacentHTML('beforebegin',inString);
+	}
+	addCheckBoxChoice = (checkBoxs)=>{
+		but = "checkBox_but"+checkBoxs;
+		if(checkBox_c[checkBoxs-1])
+			checkBox_c[checkBoxs-1] = checkBox_c[checkBoxs-1]+1;
+		else
+			checkBox_c[checkBoxs-1] = 1;
+		inString = "<label for = \"checkBoxChoice"+checkBoxs+"-"+checkBox_c[checkBoxs-1]+"\" class = \"control-label\">Choice "+checkBox_c[checkBoxs-1]+":&emsp;</label><input type = \"text\" id = \"checkBoxChoice"+checkBoxs+"-"+checkBox_c[checkBoxs-1]+"\" class = \"form-control\" name = \"FormCheckBoxChoice"+checkBoxs+"-"+checkBox_c[checkBoxs-1]+"\">";
+		var tr = document.createElement('tr');
+		tr.innerHTML = inString;
+		document.getElementById('mForm').insertBefore(tr, document.getElementById(but));
+	}
+	loadContent = ()=>{
+		var object = {Name: $('#name').val()};
+		var form_data = [];
+		for(var i = 1; i<=text; i++)
+		{
+			id = "#text"+i;
+			Name = $(id).val();
+			form_data.push({type: 1, name: Name});
+		}
+		for(var i = 1; i<=radio; i++)
+		{
+			id = "#radio"+i;
+			Name = $(id).val();
+			choices = [];
+			for(var j = 1; j<=radio_c[i-1]; j++)
+			{
+				var c_id = "#radioChoice"+i+"-"+j;
+				choices.push($(c_id).val());
+			}
+			form_data.push({type:2, name: Name, choices: choices});
+		}
+		for(var i = 1; i<=checkBox; i++)
+		{
+			id = "#checkBox"+i;
+			Name = $(id).val();
+			choices = [];
+			for(var j = 1; j<=checkBox_c[i-1]; j++)
+			{
+				var c_id = "#checkBoxChoice"+i+"-"+j;
+				choices.push($(c_id).val());
+			}
+			form_data.push({type:3, name: Name, choices: choices});
+		}
+		for(var i = 1; i<= form_data.length; i++)
+		{
+			var s = "Type: "+form_data[i-1].type+" Name: "+form_data[i-1].name;
+			if(form_data[i-1].choices)
+				s = s+" Choices: "+form_data[i-1].choices[0]+" & "+form_data[i-1].choices[1];
+		}
+		object.data = form_data;
+		makeCall({'save': JSON.stringify(object)}, '/feedback/save/');
+	}
+</script>
