@@ -1,7 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template.loader import get_template
-from django.urls import reverse
 from .models import Participant
 from .forms import AddNewParticipant,UploadFileForm
 from .utils import search,handle_uploaded_file
