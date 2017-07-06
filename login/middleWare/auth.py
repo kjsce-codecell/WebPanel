@@ -18,7 +18,7 @@ class AuthenticationMiddleware(object):
 		# the view (and later middleware) are called.
 		path=request.path_info.lstrip('/')
 		url_is_exempt=any(url.match(path) for url in EXEMPT_URLS)
-		if '/login/' != request.get_full_path() and url_is_exempt!=True:
+		if url_is_exempt!=True:
 			print('checking....')
 			if request.session.get('logged',False) is not True:
 				print('Redirecting .....')
