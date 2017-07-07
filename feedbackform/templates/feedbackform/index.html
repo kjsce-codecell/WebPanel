@@ -14,6 +14,8 @@
 	<div class="container">
 	{% if create %}
 	{% include 'feedbackform/create.html' %}
+	{% elif fillForm %}
+	{% include 'feedbackform/form.html' %}
 	{% endif %}
 	</div>
 	<footer class="footer">
