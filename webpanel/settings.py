@@ -127,11 +127,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
+PROJECT_ROOT= os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_ROOT,'staticfiles')
 STATIC_URL = '/static/'
 
-SITE_URL='http://127.0.0.1:8000/shortener'
+# SITE_URL='http://127.0.0.1:8000/shortener'
 
 LOGIN_EXEMPT_URLS=(
 	r'^login/$',
     r'^shortener/(?P<shortId>[-\w]{1,7})$',
     )
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+SITE_URL='https://codepanel.herokuapp.com/shortener'

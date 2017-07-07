@@ -12,14 +12,10 @@
 </head>
 <body>
 	<div class="container">
-	{% if quiz %}
-	{% include 'quiz/quiz.html' %}
-	{% elif ranks %}
-	{% include 'quiz/ranks.html' %}
-	{% elif weeks %}
-	{% include 'quiz/allQuiz.html' %}
-	{% else %}
-	{% include 'quiz/success.html' %}
+	{% if create %}
+	{% include 'feedbackform/create.html' %}
+	{% elif fillForm %}
+	{% include 'feedbackform/form.html' %}
 	{% endif %}
 	</div>
 	<footer class="footer">

@@ -3,7 +3,6 @@ from django.http import HttpResponse
 import json
 from .models import Form, Question, Choice
 
-# Create your views here.
 def fill(request, id):
 	form = {}
 	f = Form.objects.all().filter(id = id)
