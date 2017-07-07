@@ -32,7 +32,6 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'contestReg.apps.ContestregConfig',
-    'quiz.apps.QuizConfig',
     'login.apps.LoginConfig',
     'shortener.apps.ShortenerConfig',
 	'django.contrib.admin',
@@ -133,4 +132,4 @@ STATIC_URL = '/static/'
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
-SITE_URL='http://127.0.0.1:8000/shortener'
+SITE_URL='https://codepanel.herokuapp.com/shortener'
