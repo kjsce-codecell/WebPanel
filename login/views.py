@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse,HttpResponseRedirect
 from .forms import LoginForm
 from .models import Login
+import bcrypt
 
 # Create your views here.
 def login(request):
@@ -11,11 +12,11 @@ def login(request):
 	if request.method == 'POST':
 		username = request.POST.get('username')
 		password = request.POST.get('password')
-		
+		password = password.encode('utf-8')
 		try:
 			query = Login.objects.get(username = username)
-			
-			if query.password == password:
+			hashed_password = query.password.encode('utf-8')
+			if bcrypt.checkpw(password, hashed_password):
 				request.session['message'] = ''
 				request.session['logged'] = True
 				return redirect('/home')
