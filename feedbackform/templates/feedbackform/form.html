@@ -1,0 +1,64 @@
+<br>
+<div class="container">
+	<h1 class="display-4">{{data.name}}</h1>
+</div>
+<div class="container-fluid">
+	<form method="post" action="/feedback/submit/" class="form horizontal-form">
+	<input type = "hidden" name = "id" value = "{{data.id}}">
+	{% csrf_token %}
+		<div class="card">
+			{% for q in data.questions %}
+			<div class="table table-hover card-header">
+				<thead>
+					<tr>
+						<th>
+							{{q.no}}.&emsp;
+						</th>
+						<th>
+							{{q.text}}<br>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% if q.type is not 1 %}
+						{% for a in q.choices %}
+							{% if q.type is 2 %}
+								<input type="radio" id = "{{a}}" value = "{{a}}" name = "{{q.no}}">&emsp;
+								<label for = "{{a}}" class="control-label">{{a}}</label><br>
+							{% else %}
+								<input type="checkbox" id = "{{a}}" value = "{{a}}" name = "{{q.no}}">&emsp;
+								<label for = "{{a}}" class="control-label">{{a}}</label><br>
+							{% endif %}
+						{% endfor %}
+					{% else %}
+						<input class = "form-control" name = "{{q.no}}" type = "text" id = "{{q.no}}">
+					{% endif %}
+				</tbody>
+			</div>
+			{% endfor %}
+		</div>
+		<br><br>
+		<div class="row">
+			<div class="col-md-3 col-sm-12">
+				<div class="form-group">
+					<input type="text" name="Name" class="form-control"  placeholder="Enter Name..." required/>
+				</div>
+			</div>
+			<div class="col-md-3 col-sm-12">
+				<div class="form-group">
+					<input type="number" name="RollNo" class="form-control"  placeholder="Enter Roll Number..." required/>
+				</div>
+			</div>
+			<div class="col-md-3 col-sm-12">
+				<div class="form-group">
+					<input type="email" name="Email" class="form-control"  placeholder="Enter Email..." required/>
+				</div>
+			</div>
+			<div class="col-md-2 col-sm-12">
+				<div class="form-group">
+					<button class=" form-control btn btn-info btn-block" type="submit" value="submit_btn"><span class="fa fa-check"></span> Submit</button>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
