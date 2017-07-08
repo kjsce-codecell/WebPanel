@@ -29,6 +29,9 @@
 ## uploads
 > Syncing Data
 
+## Url Shortener
+> A simple app for shortening urls
+
 <div align="center">
         <sub>Built with ❤︎ by folks at
         <a href="https://http://kjscecodecell.com">KJSCE CodeCell </a>

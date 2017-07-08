@@ -139,4 +139,5 @@ LOGIN_EXEMPT_URLS=(
     )
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
-SITE_URL='https://codepanel.herokuapp.com/shortener'
+#SITE_URL='https://codepanel.herokuapp.com/shortener'
+SITE_URL='http://127.0.0.1:8000/shortener'

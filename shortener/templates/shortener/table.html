@@ -1,0 +1,29 @@
+<form method="get" class="form" style="padding-left:20px;">
+     <div class="row">
+         <div class="col-md-4 col-sm-12">
+             <div class="form-group">
+                 <input type="text" name="query" class="form-control" placeholder="Enter workshop name" onkeyup="search()" id="searchitem"/>
+             </div>
+         </div>
+     </div>
+</form>
+<div class="res" style="padding-left:20px; padding-right:20px">
+    <table class="table table-hover card-header" id="urls">
+        <thead>
+         <tr>
+             <th>Workshop Name</th>
+             <th>Workshop Code</th>
+             <th>Workshop Form Url</th>
+         </tr>
+        </thead>
+        <tbody>
+         {% for d in data %}
+             <tr class="form">
+                 <td>{{d.name}}</td>
+                 <td>{{d.shortId}}</td>
+                 <td>{{d.shortUrl}}</td>
+             </tr>
+             {% endfor %}
+         </tbody>
+    </table>
+</div>
