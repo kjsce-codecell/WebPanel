@@ -1,1 +1,1 @@
-web: gunicorn codepanel.wsgi --log-file -
+web: gunicorn webpanel.wsgi --log-file -
