@@ -21,13 +21,16 @@
 > Registeration for any contest held by CodeCell made easy using this app .
 
 ## login
-> Login Page
+> This app acts as a login interface for all the other apps.
 
 ## feedback-form
 > A feedback form for all the workshop held by CodeCell.
 
 ## uploads
 > Syncing Data
+
+## Url Shortener
+> A simple app for shortening urls
 
 <div align="center">
         <sub>Built with ❤︎ by folks at
