@@ -1,5 +1,4 @@
 from .models import Urls
-from bs4 import BeautifulSoup
 import random
 
 def searchdb(request):
