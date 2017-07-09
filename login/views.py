@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse,HttpResponseRedirect
 from .forms import LoginForm
 from .models import Login
+from shortener.models import Urls
 import bcrypt
 
 # Create your views here.
@@ -39,3 +40,8 @@ def home(request):
 def logout(request):
 	request.session['logged'] = False
 	return HttpResponseRedirect('/login')
+
+def redirectOriginal(request,shortId):
+    url=get_object_or_404(Urls,pk=shortId)
+    url.save()
+    return HttpResponseRedirect(url.httpUrl)
