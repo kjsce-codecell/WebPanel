@@ -15,10 +15,10 @@ def index(request):
     form=UrlsForm()
     return render(request,'shortener/index.html',{'title':'Url Shortener','form':form,'view':False,'data':data,'query':query})
 
-def redirectOriginal(request,shortId):
+'''def redirectOriginal(request,shortId):
     url=get_object_or_404(Urls,pk=shortId)
     url.save()
-    return HttpResponseRedirect(url.httpUrl)
+    return HttpResponseRedirect(url.httpUrl)'''
 
 def shortenUrl(request):
     form=UrlsForm()

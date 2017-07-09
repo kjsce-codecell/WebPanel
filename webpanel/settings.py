@@ -25,7 +25,7 @@ SECRET_KEY = '09+r=tlxpl=uov@^=6ss^fne%6+s(_4k%j&^#zstm-mz39$6!)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -139,5 +139,5 @@ LOGIN_EXEMPT_URLS=(
     )
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
-#SITE_URL='https://codepanel.herokuapp.com/shortener'
-SITE_URL='http://127.0.0.1:8000/shortener'
+SITE_URL='https://codepanel.herokuapp.com'
+#SITE_URL='http://127.0.0.1:8000/shortener'
