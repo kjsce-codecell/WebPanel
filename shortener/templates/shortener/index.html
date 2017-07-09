@@ -2,19 +2,17 @@
   
 {% block title %}URL Shortner - Make your URL shorter!{% endblock %}
   
-{% block content %}
+{% block input %}
   
 <div class="panel panel-default">
  <div class="panel-body">
- <div class="col-sm-9">
-     Url: <input type="text" name="url" id="url" class="form-control input-sm" placeholder="http://www.facebook.com" /><br>
-     Workshop Code: <input type="text" name="shortid" id="shortid" class="form-control input-sm" placeholder="prmq"/>
+     {% if not view %}
+     <form class="form" action="/shortener/shortenUrl/" method="POST">
+         {% csrf_token %}
+         {{form}}
+         <br><button type="submit" class="btn btn-primary">Add Url</button>
+     </form>
+     {% endif %}
  </div>
- <div class="col-sm-3">
- {%csrf_token%}
- <br><button id="submitButton" class="btn btn-primary" onclick="hello()">Submit</button> 
  </div>
- </div>
- <div class="panel-footer"><span id="url-result">Enter the URL above and click submit!</span></div>
-</div>
-{% endblock %}
+ {% endblock %}
