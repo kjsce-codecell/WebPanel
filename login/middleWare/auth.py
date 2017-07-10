@@ -23,5 +23,9 @@ class AuthenticationMiddleware(object):
 			if request.session.get('logged',False) is not True:
 				print('Redirecting .....')
 				return HttpResponseRedirect('/login/')
+		path = request.path_info
+		if path=='/':
+			print('Redirecting .....')
+			return HttpResponseRedirect('/home/')
 		response = self.get_response(request)
 		return response
